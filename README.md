@@ -1,10 +1,10 @@
 # sojecki.pl
 
-Publiczna statyczna strona Astro dla `sojecki.pl`.
+Publiczna statyczna strona dokumentacyjna Starlight dla `sojecki.pl`.
 
 ## Treść
 
-- opublikowane raporty: `content/reports/`;
+- opublikowane raporty i pozostałe publiczne strony: `src/content/docs/`;
 - blog i projekty: publiczne sekcje strony;
 - research, drafty i audyty: prywatne repozytorium `ksojecki/knowledge_base` — nie należą do tego repozytorium.
 
@@ -40,4 +40,4 @@ Render.com jest jedynym pipeline'em build i deploy:
 - build command: `npm ci && npm run verify`;
 - publish directory: `dist`.
 
-Repozytorium jest publiczne. Prywatny research i drafty pozostają w `ksojecki/knowledge_base`; obecność pliku raportu w `content/reports/` oznacza jego publikację.
+Repozytorium jest publiczne. Prywatny research i drafty pozostają w `ksojecki/knowledge_base`; obecność pliku w `src/content/docs/` oznacza jego publikację.

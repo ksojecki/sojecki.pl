@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+
+const reports = (await getCollection('docs')).filter((entry) => entry.data.kind === 'report').sort((a, b) => b.id.localeCompare(a.id));
+const byType = (reportType: 'weekly' | 'monthly' | 'annual') => reports.filter((entry) => entry.data.reportType === reportType);
+const groups = [['weekly', 'Tygodniowe'], ['monthly', 'Miesięczne'], ['annual', 'Roczne']] as const;
+const href = (id: string) => `/${id.toLowerCase()}/`;
+const latest = byType('weekly')[0] ?? byType('monthly')[0] ?? byType('annual')[0];
+const comparable = latest && byType(latest.data.reportType!).find((entry) => entry.id < latest.id && entry.data.intensity !== null);
+const change = latest?.data.intensity != null && comparable?.data.intensity != null ? latest.data.intensity - comparable.data.intensity : null;
+const label = { stable: 'Stabilnie', tension: 'Napięcie', preparations: 'Przygotowania', attack: 'Atak' };
+const score = { stable: 1, tension: 2, preparations: 3, attack: 4 };
+const data = Object.fromEntries(groups.map(([type]) => [type, byType(type).toReversed().map((entry) => ({ period: entry.data.period, href: href(entry.id), intensity: entry.data.intensity, threat: entry.data.confrontation ? score[entry.data.confrontation] : null }))]));
+---
+
+{latest && <section aria-label="Przegląd raportów"><p><strong>Aktualna intensywność:</strong> {latest.data.intensity == null ? 'n/d' : `${latest.data.intensity}/10`} · <strong>Zmiana:</strong> {change == null ? 'n/d' : `${change > 0 ? '+' : ''}${change}`} · <strong>Konfrontacja:</strong> {latest.data.confrontation ? `${label[latest.data.confrontation]} (${score[latest.data.confrontation]}/4)` : 'n/d'}</p><p>{groups.map(([type, title]) => byType(type)[0] && <><a href={href(byType(type)[0].id)}>Najnowszy raport {title.toLowerCase()}</a>{' · '}</>)}</p></section>}
+<section class="charts" aria-label="Wykresy raportów">{groups.map(([type, title]) => data[type].length > 0 && <section data-period={type}><h2>{title}</h2><div class="grid"><figure><figcaption>Skala bezpośredniej konfrontacji (1–4)</figcaption><canvas data-chart="threat" aria-label={`Skala konfrontacji: ${title}`}></canvas></figure><figure><figcaption>Intensywność działań</figcaption><canvas data-chart="intensity" aria-label={`Intensywność działań: ${title}`}></canvas></figure></div><p>{data[type].map((point) => <><a href={point.href}>{point.period}</a>{' '}</>)}</p></section>)}<p>Brak punktu oznacza <code>n/d</code>, nie wartość zero.</p><script id="chart-data" type="application/json" set:html={JSON.stringify(data)}></script></section>
+
+<script>
+  import Chart from 'chart.js/auto';
+  type Point = { period: string; intensity: number | null; threat: number | null };
+  const data = JSON.parse(document.querySelector('#chart-data')?.textContent || '{}') as Record<string, Point[]>;
+  const accent = getComputedStyle(document.documentElement).getPropertyValue('--sl-color-text-accent').trim();
+  document.querySelectorAll<HTMLElement>('[data-period]').forEach((section) => {
+    const points: Point[] = data[section.dataset.period ?? ''] ?? [];
+    section.querySelectorAll('canvas').forEach((canvas) => {
+      const threat = canvas.dataset.chart === 'threat';
+      new Chart(canvas, { type: 'line', data: { labels: points.map((point) => point.period), datasets: [{ data: points.map((point) => point[threat ? 'threat' : 'intensity']), borderColor: accent, backgroundColor: accent, stepped: threat, spanGaps: false }] }, options: { responsive: true, scales: { y: threat ? { min: 1, max: 4, ticks: { stepSize: 1 } } : { min: 0, max: 10, ticks: { stepSize: 2 } } }, plugins: { legend: { display: false } } } });
+    });
+  });
+</script>
+
+<style>.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}figure{margin:0}canvas{max-height:16rem}@media (max-width:40rem){.grid{grid-template-columns:1fr}}</style>

@@ -1,0 +1,12 @@
+---
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+import ReportArchive from './ReportArchive.astro';
+import ReportDashboard from './ReportDashboard.astro';
+
+const { entry } = Astro.locals.starlightRoute;
+const archiveType = { 'raporty/zagrozenia-hybrydowe/tygodniowe': 'weekly', 'raporty/zagrozenia-hybrydowe/miesieczne': 'monthly', 'raporty/zagrozenia-hybrydowe/roczne': 'annual' }[entry.id] as 'weekly' | 'monthly' | 'annual' | undefined;
+---
+
+<Default><slot /></Default>
+{entry.id === 'raporty/zagrozenia-hybrydowe' && <><p>Okresowe oceny udokumentowanych zagrożeń wobec Polski i NATO.</p><ReportDashboard /><p><a href="/raporty/zagrozenia-hybrydowe/metodologia/">Metodologia ocen</a></p></>}
+{archiveType && <ReportArchive reportType={archiveType} />}

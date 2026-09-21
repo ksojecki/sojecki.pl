@@ -1,0 +1,9 @@
+---
+import { getCollection } from 'astro:content';
+const { reportType } = Astro.props as { reportType: 'weekly' | 'monthly' | 'annual' };
+const reports = (await getCollection('docs')).filter((entry) => entry.data.kind === 'report' && entry.data.reportType === reportType).sort((a, b) => b.id.localeCompare(a.id));
+const href = (id: string) => `/${id.toLowerCase()}/`;
+const label = { stable: 'Stabilnie', tension: 'Napięcie', preparations: 'Przygotowania', attack: 'Atak' };
+---
+
+<p>Raporty w kolejności od najnowszego.</p><ol>{reports.map((report) => <li><a href={href(report.id)}>{report.data.title}</a>{' — '}{report.data.intensity == null ? 'n/d' : `${report.data.intensity}/10`}{report.data.confrontation && ` · ${label[report.data.confrontation]}`}</li>)}</ol>
