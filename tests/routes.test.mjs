@@ -31,6 +31,14 @@ test('dashboard retains report metrics and lowercase links', async () => {
   assert.doesNotMatch(page, /href="[^\"]*2026-09-W03/);
 });
 
+test('dashboard and archives exclude reports from other series', async () => {
+  const [dashboard, archive] = await Promise.all([
+    readFile('dist/raporty/zagrozenia-hybrydowe/index.html', 'utf8'),
+    readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/index.html', 'utf8'),
+  ]);
+  assert.doesNotMatch(`${dashboard}\n${archive}`, /Fixture: inna seria|2099-01-W01|10\/10|Atak/);
+});
+
 test('archives and reports keep Starlight pagination', async () => {
   const [archive, report] = await Promise.all([
     readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/index.html', 'utf8'),

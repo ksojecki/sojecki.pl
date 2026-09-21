@@ -3,7 +3,8 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import type { ReportData } from '../content.config';
 
 const isReport = (entry: CollectionEntry<'docs'>): entry is CollectionEntry<'docs'> & { data: ReportData } => entry.data.kind === 'report';
-const reports = (await getCollection('docs')).filter(isReport).sort((a, b) => b.id.localeCompare(a.id));
+const { seriesId } = Astro.props as { seriesId: string };
+const reports = (await getCollection('docs')).filter(isReport).filter((entry) => entry.data.series === seriesId).sort((a, b) => b.id.localeCompare(a.id));
 const byType = (reportType: 'weekly' | 'monthly' | 'annual') => reports.filter((entry) => entry.data.reportType === reportType);
 const groups = [['weekly', 'Tygodniowe'], ['monthly', 'Miesięczne'], ['annual', 'Roczne']] as const;
 const href = (id: string) => `/${id.toLowerCase()}/`;
