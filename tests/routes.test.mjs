@@ -32,10 +32,12 @@ test('shared navigation is present outside the root page only', async () => {
   assert.match(blog, /Strona główna/);
 });
 
-test('reports landing contains its listing image and series link', async () => {
+test('reports listing binds its image and description to the series', async () => {
   const page = await readFile('dist/raporty/index.html', 'utf8');
   assert.match(page, /raporty-hero-zolnierz\.png/);
-  assert.match(page, /Monitoring zagrożeń hybrydowych Rosji/);
+  assert.match(page, /Zagrożenia hybrydowe Rosji/);
+  assert.match(page, /Regularny przegląd udokumentowanych działań/);
+  assert.match(page, /class="report-image" href="\/raporty\/zagrozenia-hybrydowe"/);
 });
 
 test('report includes breadcrumbs and adjacent-report navigation', async () => {
