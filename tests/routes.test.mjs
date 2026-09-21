@@ -29,8 +29,9 @@ test('report includes breadcrumbs and adjacent-report navigation', async () => {
   const page = await readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-w02/index.html', 'utf8');
   assert.match(page, /<a href="\/raporty">Raporty<\/a>/);
   assert.match(page, /Monitoring zagrożeń hybrydowych Rosji/);
-  assert.match(page, /Nowszy raport/);
-  assert.match(page, /Starszy raport/);
+  assert.match(page, /Nowszy/);
+  assert.match(page, /Starszy/);
+  assert.match(page, /position:sticky/);
 });
 
 test('archives link to reports without embedding report bodies', async () => {
