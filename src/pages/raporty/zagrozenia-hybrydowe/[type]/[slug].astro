@@ -1,16 +1,21 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { marked } from 'marked';
 import { findReport, reportsByKind, type ReportKind } from '../../../../lib/reports';
+import { renderMarkdown } from '../../../../lib/markdown';
 export async function getStaticPaths() {
   const kinds = { tygodniowe: 'weekly', miesieczne: 'monthly', roczne: 'annual' } as const;
   const paths = [];
   for (const [route, kind] of Object.entries(kinds) as [keyof typeof kinds, ReportKind][]) {
-    for (const report of reportsByKind(kind)) paths.push({ params: { type: route, slug: report.id.split('/').at(-1)! } });
+    for (const report of reportsByKind(kind)) {
+      paths.push({ params: { type: route, slug: report.slug } });
+      const legacySlug = report.id.split('/').at(-1)!;
+      if (legacySlug !== report.slug) paths.push({ params: { type: route, slug: legacySlug } });
+    }
   }
   return paths;
 }
 const kinds = { tygodniowe: 'weekly', miesieczne: 'monthly', roczne: 'annual' } as const;
 const kind = kinds[Astro.params.type as keyof typeof kinds]; const entry = kind && findReport(kind, Astro.params.slug!); if (!entry) return new Response(null, { status: 404 });
+if (Astro.params.slug !== Astro.params.slug?.toLowerCase()) return Astro.redirect(`/raporty/zagrozenia-hybrydowe/${Astro.params.type}/${Astro.params.slug.toLowerCase()}`);
 ---
-<BaseLayout title={entry.title}><p><a href="/raporty/zagrozenia-hybrydowe">&larr; Monitoring zagrożeń hybrydowych Rosji</a></p><div set:html={marked.parse(entry.body)} /><p><a href="/raporty/zagrozenia-hybrydowe/metodologia">Metodologia ocen</a></p></BaseLayout>
+<BaseLayout title={entry.title}><p><a href="/raporty/zagrozenia-hybrydowe">&larr; Monitoring zagrożeń hybrydowych Rosji</a></p><div set:html={renderMarkdown(entry.body)} /><p><a href="/raporty/zagrozenia-hybrydowe/metodologia">Metodologia ocen</a></p></BaseLayout>
