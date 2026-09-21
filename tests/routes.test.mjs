@@ -32,12 +32,11 @@ test('shared navigation is present outside the root page only', async () => {
   assert.match(blog, /Strona główna/);
 });
 
-test('reports listing binds its image and description to the series', async () => {
+test('reports listing contains the series description without a thumbnail', async () => {
   const page = await readFile('dist/raporty/index.html', 'utf8');
-  assert.match(page, /raporty-hero-zolnierz\.png/);
   assert.match(page, /Zagrożenia hybrydowe Rosji/);
   assert.match(page, /Regularny przegląd udokumentowanych działań/);
-  assert.match(page, /class="report-image" href="\/raporty\/zagrozenia-hybrydowe"/);
+  assert.doesNotMatch(page, /raporty-hero-zolnierz\.png|class="report-image"/);
 });
 
 test('report includes breadcrumbs and adjacent-report navigation', async () => {
@@ -49,6 +48,7 @@ test('report includes breadcrumbs and adjacent-report navigation', async () => {
   assert.match(page, /aria-current="page"[^>]*>Tydzień 37/);
   assert.match(page, /Nowszy/);
   assert.match(page, /Starszy/);
+  assert.ok(page.indexOf('Starszy') < page.indexOf('Nowszy'));
   assert.match(page, /data-page-navigation/);
   assert.match(page, /is-scrolled/);
   assert.match(page, /position:sticky/);
