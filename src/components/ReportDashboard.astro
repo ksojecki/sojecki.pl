@@ -27,7 +27,7 @@ const data = Object.fromEntries(groups.map(([type]) => [type, byType(type).toRev
     const points: Point[] = data[section.dataset.period ?? ''] ?? [];
     section.querySelectorAll('canvas').forEach((canvas) => {
       const threat = canvas.dataset.chart === 'threat';
-      new Chart(canvas, { type: 'line', data: { labels: points.map((point) => point.period), datasets: [{ data: points.map((point) => point[threat ? 'threat' : 'intensity']), borderColor: accent, backgroundColor: accent, stepped: threat, spanGaps: false }] }, options: { responsive: true, scales: { y: threat ? { min: 1, max: 4, ticks: { stepSize: 1 } } : { min: 0, max: 10, ticks: { stepSize: 2 } } }, plugins: { legend: { display: false } } } });
+      new Chart(canvas, { type: 'line', data: { labels: points.map((point) => point.period), datasets: [{ data: points.map((point) => point[threat ? 'threat' : 'intensity']), borderColor: accent, backgroundColor: accent, spanGaps: false }] }, options: { responsive: true, scales: { y: threat ? { min: 1, max: 4, ticks: { stepSize: 1 } } : { min: 0, max: 10, ticks: { stepSize: 2 } } }, plugins: { legend: { display: false } } } });
     });
   });
 </script>
