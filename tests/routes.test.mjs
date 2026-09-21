@@ -20,6 +20,17 @@ test('dashboard links to lowercase reports and includes chart data', async () =>
   assert.doesNotMatch(page, /href="[^\"]*2026-09-W03/);
   assert.match(page, /chart-data/);
   assert.match(page, /Aktualna intensywność/);
+  assert.match(page, /Najnowszy: tygodniowe/);
+  assert.match(page, /Najnowszy: miesięczne/);
+  assert.match(page, /Najnowszy: roczne/);
+});
+
+test('report includes dashboard, archive, and adjacent-report navigation', async () => {
+  const page = await readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-w02/index.html', 'utf8');
+  assert.match(page, /Dashboard serii/);
+  assert.match(page, /Wszystkie raporty tego typu/);
+  assert.match(page, /Nowszy raport/);
+  assert.match(page, /Starszy raport/);
 });
 
 test('archives link to reports without embedding report bodies', async () => {
@@ -31,11 +42,6 @@ test('archives link to reports without embedding report bodies', async () => {
   assert.match(monthly, /2026-08/);
   assert.match(annual, /2025/);
   assert.doesNotMatch(weekly, /Materiał z tego okresu składa się/);
-});
-
-test('legacy weekly URLs redirect to lowercase routes', async () => {
-  const page = await readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-W03/index.html', 'utf8');
-  assert.match(page, /2026-09-w03/);
 });
 
 test('static build contains no private workspace paths', async () => {

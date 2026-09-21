@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { findReport, reportsByKind, type ReportKind } from '../../../../lib/reports';
+import { findReport, reportUrl, reportsByKind, type ReportKind } from '../../../../lib/reports';
 import { renderMarkdown } from '../../../../lib/markdown';
 export async function getStaticPaths() {
   const kinds = { tygodniowe: 'weekly', miesieczne: 'monthly', roczne: 'annual' } as const;
@@ -8,14 +8,13 @@ export async function getStaticPaths() {
   for (const [route, kind] of Object.entries(kinds) as [keyof typeof kinds, ReportKind][]) {
     for (const report of reportsByKind(kind)) {
       paths.push({ params: { type: route, slug: report.slug } });
-      const legacySlug = report.id.split('/').at(-1)!;
-      if (legacySlug !== report.slug) paths.push({ params: { type: route, slug: legacySlug } });
     }
   }
   return paths;
 }
 const kinds = { tygodniowe: 'weekly', miesieczne: 'monthly', roczne: 'annual' } as const;
 const kind = kinds[Astro.params.type as keyof typeof kinds]; const entry = kind && findReport(kind, Astro.params.slug!); if (!entry) return new Response(null, { status: 404 });
-if (Astro.params.slug !== Astro.params.slug?.toLowerCase()) return Astro.redirect(`/raporty/zagrozenia-hybrydowe/${Astro.params.type}/${Astro.params.slug.toLowerCase()}`);
+const related = reportsByKind(entry.kind); const position = related.findIndex((report) => report.id === entry.id); const newer = related[position - 1]; const older = related[position + 1];
 ---
-<BaseLayout title={entry.title}><p><a href="/raporty/zagrozenia-hybrydowe">&larr; Monitoring zagrożeń hybrydowych Rosji</a></p><div set:html={renderMarkdown(entry.body)} /><p><a href="/raporty/zagrozenia-hybrydowe/metodologia">Metodologia ocen</a></p></BaseLayout>
+<BaseLayout title={entry.title}><nav class="report-nav" aria-label="Nawigacja raportu"><a href="/raporty/zagrozenia-hybrydowe">Dashboard serii</a><a href={`/raporty/zagrozenia-hybrydowe/${Astro.params.type}`}>Wszystkie raporty tego typu</a></nav><div set:html={renderMarkdown(entry.body)} /><nav class="report-nav report-nav-bottom" aria-label="Sąsiednie raporty">{newer ? <a href={reportUrl(newer)}>&larr; Nowszy raport</a> : <span />}{older ? <a href={reportUrl(older)}>Starszy raport &rarr;</a> : <span />}</nav><p><a href="/raporty/zagrozenia-hybrydowe/metodologia">Metodologia ocen</a></p></BaseLayout>
+<style>.report-nav{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.5rem 0}.report-nav a{border:1px solid #b8afd0;padding:.45rem .65rem;text-decoration:none}.report-nav-bottom{justify-content:space-between;border-top:1px solid #b8afd0;padding-top:1.25rem}</style>
