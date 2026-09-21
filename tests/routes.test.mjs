@@ -54,7 +54,9 @@ test('report includes breadcrumbs and adjacent-report navigation', async () => {
   assert.ok(page.indexOf('Starszy') < page.indexOf('Nowszy'));
   assert.match(page, /data-page-navigation/);
   assert.match(page, /is-scrolled/);
-  assert.match(page, /position:sticky/);
+  assert.match(page, /page-navigation[^}]*position:relative/);
+  assert.match(page, /page-navigation[^}]*is-scrolled[^}]*position:fixed/);
+  assert.match(page, /position:fixed[^}]*bottom:.75rem/);
 });
 
 test('archives link to reports without embedding report bodies', async () => {
