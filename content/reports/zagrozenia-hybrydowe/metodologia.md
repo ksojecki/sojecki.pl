@@ -44,6 +44,8 @@ Każda liczba powinna mieć krótkie uzasadnienie i poziom pewności.
 
 Przy częściowym pokryciu **preferuj kolor z niską pewnością**, jeśli monitorowany materiał daje podstawę do orientacyjnej oceny. Zielony nie oznacza „brak zagrożenia”; oznacza brak konkretnych sygnałów w monitorowanej próbce.
 
+Dla wykresów i porównań sygnał ma również **porządkowe kodowanie 1–4**: `1/4 = 🟢`, `2/4 = 🟡`, `3/4 = 🟠`, `4/4 = 🔴`. To wyłącznie numeryczny zapis czterech kategorii sygnału — **nie** liniowa miara intensywności, prawdopodobieństwa wojny ani odległości między poziomami.
+
 Naruszenie przestrzeni, ćwiczenia NATO, działania w Ukrainie, sankcje czy art. 4 same w sobie nie przesądzają o 🟠 ani 🔴.
 
 ## 3. Porównywanie okresów
