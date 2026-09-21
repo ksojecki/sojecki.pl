@@ -62,6 +62,94 @@ Przykładowa konfiguracja:
 
 Walidować na etapie builda: unikalny identyfikator/slug, zgodność `id` z nazwą katalogu, niepusty tytuł, dozwolone typy okresów, bezpieczne nazwy ścieżek, istniejącą opcjonalną metodologię, brak kolizji URL i raportów, zgodność zawartości katalogów z deklarowanymi okresami. Nie skanować prywatnego repo podczas publicznego builda.
 
+## Następny krok — migracja raportów do Astro Content Collections
+
+Ten krok ma zostać wykonany **przed dalszym uogólnianiem obsługi wielu serii**. Nie jest osobnym, równoległym projektem: zastępuje ręczne `import.meta.glob()` i stanowi bazę dla etapów poniżej.
+
+### Cel
+
+Przenieść publiczne raporty do natywnego modelu Astro Content Collections, tak aby:
+
+- struktura raportu była walidowana przez schema w `src/content.config.ts`;
+- pliki Markdown/MDX były ładowane przez `glob()` z `astro/loaders`, zamiast przez ręczne `import.meta.glob()`;
+- metadane raportu były jawne w frontmatter i typowane w TypeScript;
+- polskie nazwy okresów były kanoniczne również w strukturze plików: `tygodniowe`, `miesieczne`, `roczne`;
+- routing publiczny pozostał zgodny z obecnymi adresami `/raporty/zagrozenia-hybrydowe/...`;
+- mechanika raportów nie zależała od angielskich nazw katalogów `weekly/monthly/annual`.
+
+### Docelowa struktura
+
+Dla istniejącej serii przyjąć katalog:
+
+```text
+src/content/docs/raporty/zagrozenia-hybrydowe/
+├── metodologia.mdx
+├── tygodniowe/
+│   └── <okres>/
+│       └── index.mdx
+├── miesieczne/
+│   └── <okres>/
+│       └── index.mdx
+└── roczne/
+    └── <rok>/
+        └── index.mdx
+```
+
+Przykład istniejącego raportu rocznego 2025:
+
+```text
+content/reports/zagrozenia-hybrydowe/annual/2025.md
+→
+src/content/docs/raporty/zagrozenia-hybrydowe/roczne/2025/index.mdx
+```
+
+Nie używać jednej ścieżki `roczne/index.mdx` dla wszystkich raportów rocznych, ponieważ kolejne lata kolidowałyby ze sobą. `roczne/index.mdx` może być ewentualnie stroną archiwum/listy, natomiast pojedynczy raport powinien mieć własny segment okresu, np. `roczne/2025/index.mdx`.
+
+### Collection schema
+
+Dodać `src/content.config.ts` i zdefiniować kolekcję raportów z loaderem obejmującym `src/content/docs/raporty/**/*.{md,mdx}`.
+
+Minimalny schema raportu powinien przenieść dane dziś wyciągane z treści do frontmatter. Na start:
+
+- `title: string`;
+- `series: string`;
+- `periodType: 'tygodniowy' | 'miesieczny' | 'roczny'`;
+- `period: string`;
+- `publishedAt` lub data okresu, jeśli jest potrzebna do sortowania;
+- `intensity: number | null` dla serii, które ją posiadają;
+- `confrontation` jako jawna wartość schematu dla monitoringu zagrożeń;
+- opcjonalne pola specyficzne dla prezentacji serii zamiast parsowania nagłówków i pogrubień z body.
+
+Pola domenowe monitoringu nie powinny być obowiązkowe dla każdej przyszłej serii. Jeżeli kolekcja pozostanie wspólna, schema powinien używać bezpiecznej unii/discriminated union według `series` albo `presentation`.
+
+### Zakres pierwszej migracji
+
+1. Utworzyć `src/content.config.ts` i schema.
+2. Przenieść **jeden istniejący raport roczny** (2025) do nowej struktury jako `src/content/docs/raporty/zagrozenia-hybrydowe/roczne/2025/index.mdx`.
+3. Przenieść jego metadane do frontmatter bez zmiany treści merytorycznej.
+4. Odczytać raport przez `getCollection()` / `getEntry()` i wyrenderować body przez API Content Collections.
+5. Zachować obecny publiczny URL raportu 2025.
+6. Dodać test potwierdzający schema validation, routing i render raportu.
+7. Dopiero po zielonym `npm run verify` przenieść pozostałe raporty roczne, następnie miesięczne i tygodniowe.
+8. Po pełnej migracji usunąć stary loader `src/lib/reports.ts` lub pozostawić w nim wyłącznie cienkie helpery pracujące na typowanych entry, bez parsowania Markdown regexpami.
+
+### Kryterium zakończenia
+
+- Astro waliduje frontmatter raportów przy buildzie;
+- istniejący raport 2025 jest renderowany z Content Collection;
+- URL publiczny nie uległ zmianie;
+- nie ma dwóch źródeł prawdy dla tego samego raportu;
+- `npm run verify` przechodzi;
+- struktura jest gotowa do mechanicznej migracji pozostałych raportów.
+
+### Relacja do istniejącego planu
+
+Ten krok **nie jest duplikatem** etapów poniżej, ale częściowo zastępuje ich warstwę ładowania danych:
+
+- zastępuje ręczne `import.meta.glob()` opisane w stanie zastanym;
+- schema Content Collections realizuje dużą część walidacji planowanej wcześniej dla modelu `ReportSeries`;
+- dalsze etapy dotyczące wielu serii, uniwersalnych tras i widoków pozostają aktualne, lecz powinny korzystać z Content Collections jako źródła danych.
+
 ## 4. Implementacja etapami
 
 ### Etap 0 — inwentaryzacja i punkt odniesienia
