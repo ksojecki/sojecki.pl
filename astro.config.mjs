@@ -15,7 +15,7 @@ export default defineConfig({
       description: 'Publiczna strona Kamila Sojeckiego.',
       defaultLocale: 'root',
       locales: { root: { label: 'Polski', lang: 'pl' } },
-      components: { PageTitle: './src/components/PageTitle.astro' },
+      components: { PageTitle: './src/components/PageTitle.astro', Pagination: './src/components/ReportPagination.astro' },
       sidebar: [
         { label: 'Start', link: '/' },
         {
