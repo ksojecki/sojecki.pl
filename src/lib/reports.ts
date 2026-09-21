@@ -9,7 +9,7 @@ const files = import.meta.glob('../../content/reports/**/*.md', { eager: true, q
 function metadata(body: string) {
   const overall = body.match(/^\| Hybrydowe (?:– ogółem|\(przekrojowo\)) \|\s*([^|]+?)\s*\|/m)?.[1] ?? '';
   const intensity = overall.match(/\b(10|[0-9])\s*\/\s*10\b/)?.[1];
-  const signal = body.match(/Bezpośrednia konfrontacja Rosja–NATO:\*{0,2}\s*(🟢|🟡|🟠|🔴)/)?.[1];
+  const signal = body.match(/Bezpośrednia konfrontacja Rosja–NATO:[^\n]*(🟢|🟡|🟠|🔴)/)?.[1];
   return { intensity: intensity ? Number(intensity) : null, confrontation: ({ '🟢': 'green', '🟡': 'yellow', '🟠': 'orange', '🔴': 'red' } as Record<string, Confrontation>)[signal ?? ''] ?? null };
 }
 
