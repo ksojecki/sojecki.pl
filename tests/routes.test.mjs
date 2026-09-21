@@ -25,12 +25,21 @@ test('dashboard links to lowercase reports and includes chart data', async () =>
   assert.match(page, /Najnowszy: roczne/);
 });
 
+test('shared navigation is present outside the root page only', async () => {
+  const [root, blog] = await Promise.all([readFile('dist/index.html', 'utf8'), readFile('dist/blog/index.html', 'utf8')]);
+  assert.doesNotMatch(root, /data-page-navigation/);
+  assert.match(blog, /data-page-navigation/);
+  assert.match(blog, /Strona główna/);
+});
+
 test('report includes breadcrumbs and adjacent-report navigation', async () => {
   const page = await readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-w02/index.html', 'utf8');
   assert.match(page, /<a href="\/raporty">Raporty<\/a>/);
   assert.match(page, /Monitoring zagrożeń hybrydowych Rosji/);
   assert.match(page, /Nowszy/);
   assert.match(page, /Starszy/);
+  assert.match(page, /data-page-navigation/);
+  assert.match(page, /is-scrolled/);
   assert.match(page, /position:sticky/);
 });
 
