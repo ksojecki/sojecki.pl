@@ -3,7 +3,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import SeriesCharts from '../../../components/SeriesCharts.astro';
 import { chartPoint, confrontationEmoji, kindLabel, reportUrl, reportsByKind } from '../../../lib/reports';
 const weekly = reportsByKind('weekly'); const monthly = reportsByKind('monthly'); const annual = reportsByKind('annual');
-const data = Object.fromEntries(Object.entries({ weekly, monthly, annual }).map(([kind, reports]) => [kind, reports.reverse().map(chartPoint)]));
+const data = Object.fromEntries(Object.entries({ weekly, monthly, annual }).map(([kind, reports]) => [kind, reports.toReversed().map(chartPoint)]));
 const latest = weekly[0] ?? monthly[0] ?? annual[0];
 const comparable = latest && reportsByKind(latest.kind).find((report) => report.id < latest.id && report.intensity !== null);
 const change = latest?.intensity !== null && comparable?.intensity != null ? latest.intensity - comparable.intensity : null;
