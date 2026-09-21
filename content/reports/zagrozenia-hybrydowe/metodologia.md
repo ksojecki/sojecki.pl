@@ -56,6 +56,16 @@ Dla każdej domeny zapisuj wartość bieżącą, wartość poprzedniego okresu, 
 - Nie traktuj różnicy punktowej jako statystycznego pomiaru rzeczywistej liczby operacji. To redakcyjny wskaźnik zmiany w obserwowanym materiale.
 - Datę zdarzenia, datę ujawnienia i późniejszą aktualizację traktuj osobno.
 
+### Spójność między tygodniami i miesiącami
+
+Skala 0–10 ma **te same kotwice znaczeniowe niezależnie od długości raportu**. Wynik opisuje intensywność i znaczenie działań w danym okresie, a nie skumulowaną liczbę zdarzeń. Dłuższy okres nie dostaje automatycznie wyższej oceny tylko dlatego, że obejmuje więcej dni.
+
+- Raport miesięczny **nie jest sumą punktów tygodniowych**. Cztery tygodnie po 2/10 nie uzasadniają same z siebie miesiąca 5/10.
+- Jeżeli dla miesiąca istnieją raporty tygodniowe, użyj ich jako obowiązkowego testu spójności. Ocena miesięczna powinna zwykle odpowiadać typowemu lub podwyższonemu poziomowi widocznemu w tygodniach.
+- Ocena miesięczna może być wyższa od najwyższego tygodnia tylko wtedy, gdy istnieje udokumentowany efekt długotrwały lub przekrojowy, którego nie oddaje pojedynczy tydzień (np. ciągłe zakłócenia GNSS, wielotygodniowa kampania albo aktywność w kilku domenach). Takie odstępstwo krótko uzasadnij.
+- Jeżeli miesiąc wychodzi wyżej wyłącznie przez kumulowanie liczby artykułów lub incydentów z kolejnych tygodni, **przelicz ocenę**.
+- O przypisaniu zdarzenia do tygodnia lub miesiąca decyduje przede wszystkim **data zdarzenia**, nie data publikacji. Późniejsza publikacja może skorygować starszy raport, ale nie powinna sztucznie podnosić bieżącego okresu.
+
 ## 4. Pewność i pokrycie
 
 Pewność oceny:
