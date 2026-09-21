@@ -42,8 +42,11 @@ test('reports listing binds its image and description to the series', async () =
 
 test('report includes breadcrumbs and adjacent-report navigation', async () => {
   const page = await readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-w02/index.html', 'utf8');
+  assert.match(page, /Strona główna/);
   assert.match(page, /<a href="\/raporty">Raporty<\/a>/);
-  assert.match(page, /Monitoring zagrożeń hybrydowych Rosji/);
+  assert.match(page, /Strona główna[\s\S]*Raporty[\s\S]*Tygodniowe/);
+  assert.match(page, /Tygodniowe/);
+  assert.match(page, /aria-current="page"[^>]*>Tydzień 37/);
   assert.match(page, /Nowszy/);
   assert.match(page, /Starszy/);
   assert.match(page, /data-page-navigation/);

@@ -4,4 +4,4 @@ import { methodology } from '../../../lib/reports';
 import { renderMarkdown } from '../../../lib/markdown';
 const entry = methodology(); if (!entry) throw new Error('Missing methodology');
 ---
-<BaseLayout title="Metodologia ocen"><div set:html={renderMarkdown(entry.body)} /></BaseLayout>
+<BaseLayout title="Metodologia ocen" navigationItems={[{ href: '/', label: 'Strona główna' }, { href: '/raporty', label: 'Raporty' }, { href: '/raporty/zagrozenia-hybrydowe', label: 'Monitoring zagrożeń hybrydowych Rosji' }, { label: 'Metodologia ocen' }]}><div set:html={renderMarkdown(entry.body)} /></BaseLayout>

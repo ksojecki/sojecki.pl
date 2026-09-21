@@ -1,9 +1,9 @@
 ---
 import PageNavigation from '../components/PageNavigation.astro';
-type NavigationItem = { href: string; label: string };
+type NavigationItem = { href?: string; label: string };
 const { title, description = 'Publiczna strona Kamila Sojeckiego.', navigationItems, navigationActions } = Astro.props as { title: string; description?: string; navigationItems?: NavigationItem[]; navigationActions?: NavigationItem[] };
 const isRoot = Astro.url.pathname === '/';
-const items = navigationItems ?? [{ href: '/', label: 'Strona główna' }];
+const items = navigationItems ?? [{ href: '/', label: 'Strona główna' }, { label: title }];
 ---
 <!doctype html><html lang="pl"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content={description} /><title>{title} | sojecki.pl</title></head><body><header><nav aria-label="Główna nawigacja"><a class="brand" href="/">sojecki.pl</a><a href="/blog">Blog</a><a href="/projekty">Projekty</a><a href="/raporty">Raporty</a></nav></header><main>{!isRoot && <PageNavigation items={items} actions={navigationActions} />}<slot /></main><footer>© {new Date().getFullYear()} Kamil Sojecki</footer></body></html>
 <style is:global>:root{color:#21174f;background:#f6f3fa;font-family:ui-sans-serif,system-ui,sans-serif}body{margin:0;line-height:1.6}header,footer{background:#ede8f5}nav,main,footer{box-sizing:border-box;max-width:72rem;margin:auto;padding:1rem 1.25rem}nav{display:flex;flex-wrap:wrap;gap:1rem;align-items:center}.brand{margin-right:auto;font-weight:700}a{color:#75178a}h1,h2,h3{line-height:1.2}main{min-height:calc(100vh - 9rem)}table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse}th,td{padding:.45rem .6rem;border:1px solid #b8afd0;text-align:left;vertical-align:top}pre{overflow-x:auto;padding:1rem;background:#ede8f5}footer{color:#52486e;font-size:.9rem}</style>
