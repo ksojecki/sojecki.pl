@@ -39,6 +39,12 @@ test('dashboard and archives exclude reports from other series', async () => {
   assert.doesNotMatch(`${dashboard}\n${archive}`, /Fixture: inna seria|2099-01-W01|10\/10|Atak/);
 });
 
+test('dashboard reads the intensity trend from frontmatter', async () => {
+  const dashboard = await readFile('src/components/ReportDashboard.astro', 'utf8');
+  assert.match(dashboard, /latest\?\.data\.intensityChange/);
+  assert.doesNotMatch(dashboard, /latest\.data\.intensity\s*-/);
+});
+
 test('archives and reports keep Starlight pagination', async () => {
   const [archive, report] = await Promise.all([
     readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/index.html', 'utf8'),

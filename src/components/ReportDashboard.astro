@@ -9,8 +9,7 @@ const byType = (reportType: 'weekly' | 'monthly' | 'annual') => reports.filter((
 const groups = [['weekly', 'Tygodniowe'], ['monthly', 'Miesięczne'], ['annual', 'Roczne']] as const;
 const href = (id: string) => `/${id.toLowerCase()}/`;
 const latest = byType('weekly')[0] ?? byType('monthly')[0] ?? byType('annual')[0];
-const comparable = latest && byType(latest.data.reportType!).find((entry) => entry.id < latest.id && entry.data.intensity !== null);
-const change = latest?.data.intensity != null && comparable?.data.intensity != null ? latest.data.intensity - comparable.data.intensity : null;
+const change = latest?.data.intensityChange ?? null;
 const label = { stable: 'Stabilnie', tension: 'Napięcie', preparations: 'Przygotowania', attack: 'Atak' };
 const score = { stable: 1, tension: 2, preparations: 3, attack: 4 };
 const data = Object.fromEntries(groups.map(([type]) => [type, byType(type).toReversed().map((entry) => ({ period: entry.data.period, href: href(entry.id), intensity: entry.data.intensity, threat: entry.data.confrontation ? score[entry.data.confrontation] : null }))]));

@@ -9,6 +9,7 @@ const reportSchema = z.object({
   period: z.string().min(1),
   reportType: z.enum(['weekly', 'monthly', 'annual']),
   intensity: z.number().int().min(0).max(10).nullable(),
+  intensityChange: z.number().int().min(-10).max(10).nullable(),
   confrontation: z.enum(['stable', 'tension', 'preparations', 'attack']).nullable(),
 });
 
