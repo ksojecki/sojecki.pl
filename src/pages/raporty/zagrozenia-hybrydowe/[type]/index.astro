@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
-import { confrontationEmoji, kindLabel, reportUrl, reportsByKind } from '../../../../lib/reports';
+import ConfrontationChip from '../../../../components/ConfrontationChip.astro';
+import { kindLabel, reportUrl, reportsByKind } from '../../../../lib/reports';
 export function getStaticPaths() {
   return [{ params: { type: 'tygodniowe' } }, { params: { type: 'miesieczne' } }, { params: { type: 'roczne' } }];
 }
@@ -9,5 +10,5 @@ const kind = routes[Astro.params.type as keyof typeof routes];
 if (!kind) return new Response(null, { status: 404 });
 const reports = reportsByKind(kind);
 ---
-<BaseLayout title={`${kindLabel[kind]} raporty`} navigationItems={[{ href: '/', label: 'Strona główna' }, { href: '/raporty', label: 'Raporty' }, { label: kindLabel[kind] }]}><h1>{kindLabel[kind]}</h1><p>Raporty w kolejności od najnowszego.</p><ol class="reports">{reports.map((report) => <li><a href={reportUrl(report)}><strong>{report.title}</strong><span>{report.intensity === null ? 'n/d' : `${report.intensity}/10`} · {confrontationEmoji(report.confrontation)}</span></a></li>)}</ol></BaseLayout>
+<BaseLayout title={`${kindLabel[kind]} raporty`} navigationItems={[{ href: '/', label: 'Strona główna' }, { href: '/raporty', label: 'Raporty' }, { label: kindLabel[kind] }]}><h1>{kindLabel[kind]}</h1><p>Raporty w kolejności od najnowszego.</p><ol class="reports">{reports.map((report) => <li><a href={reportUrl(report)}><strong>{report.title}</strong><span>{report.intensity === null ? 'n/d' : `${report.intensity}/10`} · <ConfrontationChip value={report.confrontation} /></span></a></li>)}</ol></BaseLayout>
 <style>.reports{padding:0;list-style:none}.reports li{border-top:1px solid #b8afd0}.reports a{display:flex;justify-content:space-between;gap:1rem;padding:1rem 0;text-decoration:none}.reports span{white-space:nowrap;color:#52486e}@media(max-width:35rem){.reports a{display:block}.reports span{display:block;margin-top:.25rem}}</style>

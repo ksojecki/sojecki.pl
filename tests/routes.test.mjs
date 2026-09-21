@@ -23,6 +23,12 @@ test('dashboard links to lowercase reports and includes chart data', async () =>
   assert.match(page, /Najnowszy: tygodniowe/);
   assert.match(page, /Najnowszy: miesięczne/);
   assert.match(page, /Najnowszy: roczne/);
+  assert.match(page, /status-chip tension[^>]*>Napięcie/);
+  assert.match(page, /2\/4/);
+  assert.match(page, /Stabilnie/);
+  assert.match(page, /Napięcie/);
+  assert.match(page, /Przygotowania/);
+  assert.match(page, /Atak/);
 });
 
 test('shared navigation is present outside the root page only', async () => {
@@ -69,6 +75,7 @@ test('archives link to reports without embedding report bodies', async () => {
   assert.match(weekly, /2026-09-w03/);
   assert.match(monthly, /2026-08/);
   assert.match(annual, /2025/);
+  assert.match(weekly, /status-chip tension[^>]*>Napięcie/);
   assert.doesNotMatch(weekly, /Materiał z tego okresu składa się/);
 });
 
