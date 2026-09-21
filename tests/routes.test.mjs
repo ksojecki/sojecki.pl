@@ -30,6 +30,9 @@ test('shared navigation is present outside the root page only', async () => {
   assert.doesNotMatch(root, /data-page-navigation/);
   assert.match(blog, /data-page-navigation/);
   assert.match(blog, /Strona główna/);
+  assert.ok(blog.indexOf('data-page-navigation') > blog.indexOf('<h1>Blog'));
+  assert.match(blog, /site-navigation[\s\S]*text-decoration:none/);
+  assert.match(blog, /footer\{[^}]*background:0 0/);
 });
 
 test('reports listing contains the series description without a thumbnail', async () => {
@@ -42,7 +45,7 @@ test('reports listing contains the series description without a thumbnail', asyn
 test('report includes breadcrumbs and adjacent-report navigation', async () => {
   const page = await readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-w02/index.html', 'utf8');
   assert.match(page, /Strona główna/);
-  assert.match(page, /<a href="\/raporty">Raporty<\/a>/);
+  assert.match(page, /<a href="\/raporty"[^>]*>Raporty<\/a>/);
   assert.match(page, /Strona główna[\s\S]*Raporty[\s\S]*Tygodniowe/);
   assert.match(page, /Tygodniowe/);
   assert.match(page, /aria-current="page"[^>]*>Tydzień 37/);
