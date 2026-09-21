@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { chartPoint, reportsByKind } from '../../../lib/reports';
+const weekly = reportsByKind('weekly'); const monthly = reportsByKind('monthly'); const annual = reportsByKind('annual');
+const data = Object.fromEntries(Object.entries({ weekly, monthly, annual }).map(([kind, reports]) => [kind, reports.reverse().map(chartPoint)]));
+---
+<BaseLayout title="Monitoring zagrożeń hybrydowych Rosji"><h1>Monitoring zagrożeń hybrydowych Rosji</h1><p>Okresowe raporty o udokumentowanych zagrożeniach wobec Polski i NATO.</p><p><a href="/raporty/zagrozenia-hybrydowe/metodologia">Metodologia ocen</a></p><ul>{Object.entries(data).map(([kind, points]) => <li>{kind}: {points.length} raportów</li>)}</ul></BaseLayout>

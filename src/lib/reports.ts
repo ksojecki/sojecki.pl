@@ -1,0 +1,11 @@
+export type ReportKind = 'weekly' | 'monthly' | 'annual';
+export type Report = { id: string; body: string; title: string };
+const paths: Record<ReportKind, string> = { weekly: 'tygodniowe', monthly: 'miesieczne', annual: 'roczne' };
+const files = import.meta.glob('../../content/reports/**/*.md', { eager: true, query: '?raw', import: 'default' }) as Record<string, string>;
+const reports = Object.entries(files).map(([file, body]) => ({ id: file.replace(/^.*content\/reports\//, '').replace(/\.md$/, ''), body, title: body.match(/^#\s+(.+)$/m)?.[1] ?? file }));
+export const reportKind = (report: Report): ReportKind => report.id.split('/')[1] as ReportKind;
+export const reportUrl = (report: Report) => `/raporty/zagrozenia-hybrydowe/${paths[reportKind(report)]}/${report.id.split('/').at(-1)}`;
+export const reportsByKind = (kind?: ReportKind) => reports.filter((report) => report.id !== 'zagrozenia-hybrydowe/metodologia').filter((report) => !kind || reportKind(report) === kind).sort((a, b) => b.id.localeCompare(a.id));
+export const findReport = (kind: ReportKind, slug: string) => reports.find((report) => report.id === `zagrozenia-hybrydowe/${kind}/${slug}`);
+export const methodology = () => reports.find((report) => report.id === 'zagrozenia-hybrydowe/metodologia');
+export const chartPoint = (report: Report) => { const overall = report.body.match(/^\| Hybrydowe (?:– ogółem|\(przekrojowo\)) \|\s*([^|]+?)\s*\|/m)?.[1]; const intensity = overall?.match(/(\d{1,2})\s*\/\s*10/)?.[1]; const signal = report.body.match(/\*\*Bezpośrednia konfrontacja Rosja–NATO:\*\*\s*(🟢|🟡|🟠|🔴)/)?.[1]; const threat = ({ '🟢': 1, '🟡': 2, '🟠': 3, '🔴': 4 } as Record<string, number | undefined>)[signal ?? ''] ?? null; return { period: report.id.split('/').at(-1)!, href: reportUrl(report), intensity: intensity ? Number(intensity) : null, threat }; };

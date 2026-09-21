@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { marked } from 'marked';
+import { methodology } from '../../../lib/reports';
+const entry = methodology(); if (!entry) throw new Error('Missing methodology');
+---
+<BaseLayout title="Metodologia ocen"><div set:html={marked.parse(entry.body)} /></BaseLayout>
