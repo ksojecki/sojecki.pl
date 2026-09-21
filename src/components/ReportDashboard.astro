@@ -1,7 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
+import type { ReportData } from '../content.config';
 
-const reports = (await getCollection('docs')).filter((entry) => entry.data.kind === 'report').sort((a, b) => b.id.localeCompare(a.id));
+const isReport = (entry: CollectionEntry<'docs'>): entry is CollectionEntry<'docs'> & { data: ReportData } => entry.data.kind === 'report';
+const reports = (await getCollection('docs')).filter(isReport).sort((a, b) => b.id.localeCompare(a.id));
 const byType = (reportType: 'weekly' | 'monthly' | 'annual') => reports.filter((entry) => entry.data.reportType === reportType);
 const groups = [['weekly', 'Tygodniowe'], ['monthly', 'Miesięczne'], ['annual', 'Roczne']] as const;
 const href = (id: string) => `/${id.toLowerCase()}/`;
