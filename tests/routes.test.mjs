@@ -32,6 +32,13 @@ test('shared navigation is present outside the root page only', async () => {
   assert.match(blog, /Strona główna/);
 });
 
+test('reports landing contains its public-domain image and series link', async () => {
+  const page = await readFile('dist/raporty/index.html', 'utf8');
+  assert.match(page, /polscy-zolnierze-wartownicza\.jpg/);
+  assert.match(page, /Postawa\.zasadnicza\.jpg/);
+  assert.match(page, /Monitoring zagrożeń hybrydowych Rosji/);
+});
+
 test('report includes breadcrumbs and adjacent-report navigation', async () => {
   const page = await readFile('dist/raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-w02/index.html', 'utf8');
   assert.match(page, /<a href="\/raporty">Raporty<\/a>/);
