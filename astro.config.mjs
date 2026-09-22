@@ -29,13 +29,17 @@ function nestedReportRedirects() {
           return [[`${reportSeriesRoute}/roczne/${year}`, `${reportSeriesRoute}/${year}`]];
         }
         if (/^\d{4}\/\d{2}\/index\.md$/.test(lowerCasePath)) {
-          const [year, month] = relativePath.split('/');
+          const [year, month] = lowerCasePath.split('/');
           return [[`${reportSeriesRoute}/miesieczne/${year}-${month}`, `${reportSeriesRoute}/${year}/${month}`]];
         }
         if (/^\d{4}\/\d{2}\/\d{4}-\d{2}-w\d{2}\.md$/.test(lowerCasePath)) {
-          const [year, month, filename] = relativePath.split('/');
+          const [year, month, filename] = lowerCasePath.split('/');
           const slug = filename.replace(/\.md$/, '');
-          return [[`${reportSeriesRoute}/tygodniowe/${slug.toLowerCase()}`, `${reportSeriesRoute}/${year}/${month}/${slug}`]];
+          const legacyUppercaseSlug = slug.replace(/-w(\d{2})$/, '-W$1');
+          return [
+            [`${reportSeriesRoute}/tygodniowe/${slug}`, `${reportSeriesRoute}/${year}/${month}/${slug}`],
+            [`${reportSeriesRoute}/tygodniowe/${legacyUppercaseSlug}`, `${reportSeriesRoute}/${year}/${month}/${slug}`],
+          ];
         }
         return [];
       }),
