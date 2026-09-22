@@ -1,5 +1,7 @@
 ---
 title: "Metodologia ocen"
+sidebar:
+  hidden: true
 kind: methodology
 ---
 

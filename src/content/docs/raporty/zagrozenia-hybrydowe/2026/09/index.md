@@ -1,5 +1,8 @@
 ---
 title: "Miesiąc Wrzesień"
+sidebar:
+  label: Podsumowanie miesiąca
+  order: -20260999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-09"

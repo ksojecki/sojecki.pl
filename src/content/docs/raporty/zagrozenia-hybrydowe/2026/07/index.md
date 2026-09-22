@@ -1,5 +1,8 @@
 ---
 title: "Miesiąc Lipiec"
+sidebar:
+  label: Podsumowanie miesiąca
+  order: -20260799
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-07"

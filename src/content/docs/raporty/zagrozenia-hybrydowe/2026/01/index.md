@@ -1,5 +1,8 @@
 ---
 title: "Miesiąc Styczeń"
+sidebar:
+  label: Podsumowanie miesiąca
+  order: -20260199
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-01"

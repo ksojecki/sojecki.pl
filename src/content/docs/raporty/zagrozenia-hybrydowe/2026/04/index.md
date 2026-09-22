@@ -1,5 +1,8 @@
 ---
 title: "Miesiąc Kwiecień"
+sidebar:
+  label: Podsumowanie miesiąca
+  order: -20260499
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-04"

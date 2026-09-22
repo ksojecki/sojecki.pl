@@ -1,5 +1,8 @@
 ---
 title: "Miesiąc Czerwiec"
+sidebar:
+  label: Podsumowanie miesiąca
+  order: -20260699
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-06"

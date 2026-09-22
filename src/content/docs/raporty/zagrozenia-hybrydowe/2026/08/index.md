@@ -1,5 +1,8 @@
 ---
 title: "Miesiąc Sierpień"
+sidebar:
+  label: Podsumowanie miesiąca
+  order: -20260899
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-08"
