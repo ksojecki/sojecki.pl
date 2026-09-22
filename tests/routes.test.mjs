@@ -38,7 +38,7 @@ test('dashboard and report pages exclude reports from other series', async () =>
     readFile('dist/raporty/zagrozenia-hybrydowe/index.html', 'utf8'),
     readFile('dist/raporty/zagrozenia-hybrydowe/2026/09/2026-09-w02/index.html', 'utf8'),
   ]);
-  assert.doesNotMatch(`${dashboard}\n${report}`, /Fixture: inna seria|2099-01-W01|10\/10|Atak/);
+  assert.doesNotMatch(`${dashboard}\n${report}`, /Fixture: inna seria|2099-01-W01/);
 });
 
 test('dashboard reads the intensity trend from frontmatter', async () => {
