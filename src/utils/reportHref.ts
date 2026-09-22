@@ -1,1 +1,1 @@
-export const reportHref = (id: string) => `/${id.toLowerCase()}/`;
+export const reportHref = (id: string) => `/${id}/`;
