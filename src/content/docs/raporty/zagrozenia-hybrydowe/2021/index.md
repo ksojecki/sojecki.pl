@@ -1,20 +1,21 @@
 ---
 title: "Rok 2021"
-sidebar:
-  label: Podsumowanie roczne
-  order: -20219999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2021"
 reportType: "annual"
+intensity: 3
+intensityChange: 0
+confrontation: "tension"
 periodStart: "2021-01-01"
 periodEnd: "2021-12-31"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 3
-intensityChange: 0
-confrontation: "tension"
+sidebar:
+  label: "Podsumowanie roczne"
+  order: -20219999
 ---
+
 
 **Okres:** 01.01–31.12.2021 · **Stan wiedzy:** 20.09.2026
 

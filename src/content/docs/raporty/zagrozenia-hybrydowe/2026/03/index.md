@@ -1,20 +1,21 @@
 ---
 title: "Miesiąc Marzec"
-sidebar:
-  label: Podsumowanie miesiąca
-  order: -20260399
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-03"
 reportType: "monthly"
+intensity: 2
+intensityChange: 0
+confrontation: "stable"
 periodStart: "2026-03-01"
 periodEnd: "2026-03-31"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 2
-intensityChange: 0
-confrontation: "stable"
+sidebar:
+  label: "Podsumowanie miesiąca"
+  order: -20260399
 ---
+
 
 **Okres:** 01–31.03.2026 · **Stan wiedzy:** 20.09.2026
 

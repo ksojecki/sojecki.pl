@@ -1,20 +1,21 @@
 ---
 title: "Rok 2020"
-sidebar:
-  label: Podsumowanie roczne
-  order: -20209999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2020"
 reportType: "annual"
+intensity: 3
+intensityChange: null
+confrontation: "stable"
 periodStart: "2020-01-01"
 periodEnd: "2020-12-31"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 3
-intensityChange: null
-confrontation: "stable"
+sidebar:
+  label: "Podsumowanie roczne"
+  order: -20209999
 ---
+
 
 **Okres:** 01.01–31.12.2020 · **Stan wiedzy:** 20.09.2026
 

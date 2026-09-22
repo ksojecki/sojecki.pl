@@ -1,20 +1,21 @@
 ---
 title: "Miesiąc Lipiec"
-sidebar:
-  label: Podsumowanie miesiąca
-  order: -20260799
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-07"
 reportType: "monthly"
+intensity: 4
+intensityChange: 1
+confrontation: "tension"
 periodStart: "2026-07-01"
 periodEnd: "2026-07-31"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 4
-intensityChange: 1
-confrontation: "tension"
+sidebar:
+  label: "Podsumowanie miesiąca"
+  order: -20260799
 ---
+
 
 **Okres:** 01–31.07.2026 · **Stan wiedzy:** 20.09.2026
 

@@ -1,20 +1,21 @@
 ---
 title: "Miesiąc Styczeń"
-sidebar:
-  label: Podsumowanie miesiąca
-  order: -20260199
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-01"
 reportType: "monthly"
+intensity: 3
+intensityChange: null
+confrontation: "stable"
 periodStart: "2026-01-01"
 periodEnd: "2026-01-31"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 3
-intensityChange: null
-confrontation: "stable"
+sidebar:
+  label: "Podsumowanie miesiąca"
+  order: -20260199
 ---
+
 
 **Okres:** 01–31.01.2026 · **Stan wiedzy:** 20.09.2026
 

@@ -1,4 +1,4 @@
 ---
-title: Monitoring zagrożeń hybrydowych Rosji
-kind: series
+title: "Monitoring zagrożeń hybrydowych Rosji"
+kind: "series"
 ---

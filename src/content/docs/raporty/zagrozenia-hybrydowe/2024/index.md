@@ -1,20 +1,21 @@
 ---
 title: "Rok 2024"
-sidebar:
-  label: Podsumowanie roczne
-  order: -20249999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2024"
 reportType: "annual"
+intensity: 5
+intensityChange: 1
+confrontation: "tension"
 periodStart: "2024-01-01"
 periodEnd: "2024-12-31"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 5
-intensityChange: 1
-confrontation: "tension"
+sidebar:
+  label: "Podsumowanie roczne"
+  order: -20249999
 ---
+
 
 **Okres:** 01.01–31.12.2024 · **Stan wiedzy:** 20.09.2026
 

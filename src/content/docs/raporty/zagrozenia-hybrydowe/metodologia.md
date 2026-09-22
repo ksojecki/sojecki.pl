@@ -1,16 +1,15 @@
 ---
 title: "Metodologia ocen"
-sidebar:
-  hidden: true
-kind: methodology
+kind: "methodology"
 ---
+
 
 ## Cel i zakres
 
 Raport odpowiada na dwa odrębne pytania:
 
 1. **Jak intensywne są obserwowane działania i zagrożenia wobec Polski/NATO?** — skala 0–10.
-2. **Jaki jest sygnał bezpośredniej konfrontacji militarnej Rosja–NATO?** — 🟢 / 🟡 / 🟠 / 🔴.
+2. **Jaki jest sygnał bezpośredniej konfrontacji militarnej Rosja–NATO?** — 1/4 · 🟢 Stabilnie / 2/4 · 🟡 Napięcie / 3/4 · 🟠 Przygotowania / 4/4 · 🔴 Atak.
 
 Wskaźniki nie są prawdopodobieństwem wojny ani prognozą. Ukraina i NATO pozostają odrębnymi obszarami: zdarzenie na terytorium Ukrainy może wpływać na bezpieczeństwo Polski i NATO, ale nie jest automatycznie atakiem na Sojusz.
 
@@ -41,15 +40,15 @@ Każda liczba powinna mieć krótkie uzasadnienie i poziom pewności.
 
 ## 2. Bezpośrednia konfrontacja militarna — osobny sygnalizator
 
-- 🟢 — w monitorowanym materiale brak konkretnych sygnałów bezpośrednich przygotowań do konfrontacji.
-- 🟡 — konkretne napięcia lub incydenty militarne, bez spójnego zestawu przesłanek bezpośredniej konfrontacji.
-- 🟠 — kilka niezależnych, aktualnych i potwierdzonych sygnałów bezpośrednich przygotowań, spójnych czasowo i operacyjnie.
-- 🔴 — potwierdzone rozpoczęcie bezpośredniej konfrontacji militarnej Rosja–NATO.
+- **1/4 · 🟢 Stabilnie** — w monitorowanym materiale brak konkretnych sygnałów bezpośrednich przygotowań do konfrontacji.
+- **2/4 · 🟡 Napięcie** — konkretne napięcia lub incydenty militarne, bez spójnego zestawu przesłanek bezpośredniej konfrontacji.
+- **3/4 · 🟠 Przygotowania** — kilka niezależnych, aktualnych i potwierdzonych sygnałów bezpośrednich przygotowań, spójnych czasowo i operacyjnie.
+- **4/4 · 🔴 Atak** — potwierdzone rozpoczęcie bezpośredniej konfrontacji militarnej Rosja–NATO.
 - `n/d` — materiał jest zbyt ubogi, aby przypisać nawet orientacyjny kolor.
 
 Przy częściowym pokryciu **preferuj kolor z niską pewnością**, jeśli monitorowany materiał daje podstawę do orientacyjnej oceny. Zielony nie oznacza „brak zagrożenia”; oznacza brak konkretnych sygnałów w monitorowanej próbce.
 
-Dla wykresów i porównań sygnał ma również **porządkowe kodowanie 1–4**: `1/4 = 🟢`, `2/4 = 🟡`, `3/4 = 🟠`, `4/4 = 🔴`. To wyłącznie numeryczny zapis czterech kategorii sygnału — **nie** liniowa miara intensywności, prawdopodobieństwa wojny ani odległości między poziomami.
+Dla wykresów i porównań sygnał ma również **porządkowe kodowanie 1–4**: `1/4 = 🟢 Stabilnie`, `2/4 = 🟡 Napięcie`, `3/4 = 🟠 Przygotowania`, `4/4 = 🔴 Atak`. To wyłącznie numeryczny zapis czterech kategorii sygnału — **nie** liniowa miara intensywności, prawdopodobieństwa wojny ani odległości między poziomami.
 
 Naruszenie przestrzeni, ćwiczenia NATO, działania w Ukrainie, sankcje czy art. 4 same w sobie nie przesądzają o 🟠 ani 🔴.
 
@@ -59,7 +58,8 @@ Dla każdej domeny zapisuj wartość bieżącą, wartość poprzedniego okresu, 
 
 - Porównuj tygodnie z tygodniami, miesiące z miesiącami i lata z latami.
 - Przy nierównym pokryciu **można zachować orientacyjne porównanie**, jeżeli obie oceny mają sens redakcyjny; zaznacz wtedy niską pewność.
-- `n/d` dla zmiany stosuj, gdy okres jest niepełny albo porównanie byłoby faktycznie pozbawione znaczenia.
+- Dla **niepełnego okresu** nie pokazuj liczbowej zmiany ani strzałki względem pełnego poprzedniego okresu; użyj `—` i opisz ocenę jako wstępną. Wyjątek: porównanie równych, jawnie wskazanych okien czasu (np. pierwsze 5 dni vs pierwsze 5 dni), jeśli ma sens redakcyjny.
+- `n/d` stosuj dla samej oceny lub zmiany tylko wtedy, gdy materiał nie pozwala nawet na sensowne przybliżenie.
 - Nie traktuj różnicy punktowej jako statystycznego pomiaru rzeczywistej liczby operacji. To redakcyjny wskaźnik zmiany w obserwowanym materiale.
 - Datę zdarzenia, datę ujawnienia i późniejszą aktualizację traktuj osobno.
 

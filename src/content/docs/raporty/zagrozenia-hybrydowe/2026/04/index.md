@@ -1,20 +1,21 @@
 ---
 title: "Miesiąc Kwiecień"
-sidebar:
-  label: Podsumowanie miesiąca
-  order: -20260499
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-04"
 reportType: "monthly"
+intensity: 2
+intensityChange: 0
+confrontation: "tension"
 periodStart: "2026-04-01"
 periodEnd: "2026-04-30"
 knowledgeDate: "2026-09-21"
 periodComplete: true
-intensity: 2
-intensityChange: 0
-confrontation: "tension"
+sidebar:
+  label: "Podsumowanie miesiąca"
+  order: -20260499
 ---
+
 
 **Okres:** 01–30.04.2026 · **Stan wiedzy:** 21.09.2026
 

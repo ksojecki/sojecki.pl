@@ -1,20 +1,21 @@
 ---
 title: "Miesiąc Czerwiec"
-sidebar:
-  label: Podsumowanie miesiąca
-  order: -20260699
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-06"
 reportType: "monthly"
+intensity: 3
+intensityChange: 1
+confrontation: "tension"
 periodStart: "2026-06-01"
 periodEnd: "2026-06-30"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 3
-intensityChange: 1
-confrontation: "tension"
+sidebar:
+  label: "Podsumowanie miesiąca"
+  order: -20260699
 ---
+
 
 **Okres:** 01–30.06.2026 · **Stan wiedzy:** 20.09.2026
 

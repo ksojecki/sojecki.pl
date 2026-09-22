@@ -1,20 +1,21 @@
 ---
 title: "Miesiąc Wrzesień"
-sidebar:
-  label: Podsumowanie miesiąca
-  order: -20260999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-09"
 reportType: "monthly"
+intensity: 3
+intensityChange: null
+confrontation: "tension"
 periodStart: "2026-09-01"
 periodEnd: "2026-09-20"
 knowledgeDate: "2026-09-21"
 periodComplete: false
-intensity: 3
-intensityChange: null
-confrontation: "tension"
+sidebar:
+  label: "Podsumowanie miesiąca"
+  order: -20260999
 ---
+
 
 **Okres:** 01–20.09.2026 (okres niepełny) · **Stan wiedzy:** 21.09.2026
 

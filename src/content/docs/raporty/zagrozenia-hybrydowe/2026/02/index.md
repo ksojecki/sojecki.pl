@@ -1,20 +1,21 @@
 ---
 title: "Miesiąc Luty"
-sidebar:
-  label: Podsumowanie miesiąca
-  order: -20260299
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-02"
 reportType: "monthly"
+intensity: 2
+intensityChange: -1
+confrontation: "stable"
 periodStart: "2026-02-01"
 periodEnd: "2026-02-28"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 2
-intensityChange: -1
-confrontation: "stable"
+sidebar:
+  label: "Podsumowanie miesiąca"
+  order: -20260299
 ---
+
 
 **Okres:** 01–28.02.2026 · **Stan wiedzy:** 20.09.2026
 

@@ -1,20 +1,21 @@
 ---
 title: "Rok 2025"
-sidebar:
-  label: Podsumowanie roczne
-  order: -20259999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2025"
 reportType: "annual"
+intensity: 5
+intensityChange: 0
+confrontation: "tension"
 periodStart: "2025-01-01"
 periodEnd: "2025-12-31"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 5
-intensityChange: 0
-confrontation: "tension"
+sidebar:
+  label: "Podsumowanie roczne"
+  order: -20259999
 ---
+
 
 **Okres:** 01.01–31.12.2025 · **Stan wiedzy:** 20.09.2026
 

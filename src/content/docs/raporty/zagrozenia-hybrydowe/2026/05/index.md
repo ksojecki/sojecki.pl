@@ -1,20 +1,21 @@
 ---
 title: "Miesiąc Maj"
-sidebar:
-  label: Podsumowanie miesiąca
-  order: -20260599
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-05"
 reportType: "monthly"
+intensity: 2
+intensityChange: 0
+confrontation: "tension"
 periodStart: "2026-05-01"
 periodEnd: "2026-05-31"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 2
-intensityChange: 0
-confrontation: "tension"
+sidebar:
+  label: "Podsumowanie miesiąca"
+  order: -20260599
 ---
+
 
 **Okres:** 01–31.05.2026 · **Stan wiedzy:** 20.09.2026
 

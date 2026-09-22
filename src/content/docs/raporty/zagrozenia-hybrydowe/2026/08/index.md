@@ -1,20 +1,21 @@
 ---
 title: "Miesiąc Sierpień"
-sidebar:
-  label: Podsumowanie miesiąca
-  order: -20260899
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-08"
 reportType: "monthly"
+intensity: 5
+intensityChange: 1
+confrontation: "tension"
 periodStart: "2026-08-01"
 periodEnd: "2026-08-31"
 knowledgeDate: "2026-09-20"
 periodComplete: true
-intensity: 5
-intensityChange: 1
-confrontation: "tension"
+sidebar:
+  label: "Podsumowanie miesiąca"
+  order: -20260899
 ---
+
 
 **Okres:** 01–31.08.2026 · **Stan wiedzy:** 20.09.2026
 
