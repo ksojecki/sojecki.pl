@@ -41,7 +41,7 @@ function nestedReportRedirects() {
             [`${reportSeriesRoute}/tygodniowe/${legacyUppercaseSlug}`, `${reportSeriesRoute}/${year}/${month}/${slug}`],
           ];
         }
-        return [];
+        throw new Error(`Unsupported report path for legacy redirects: ${relativePath}`);
       }),
   );
 }
