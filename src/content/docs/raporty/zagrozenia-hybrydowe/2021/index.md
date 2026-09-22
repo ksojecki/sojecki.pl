@@ -1,5 +1,8 @@
 ---
 title: "Rok 2021"
+sidebar:
+  label: Podsumowanie roczne
+  order: -20219999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2021"

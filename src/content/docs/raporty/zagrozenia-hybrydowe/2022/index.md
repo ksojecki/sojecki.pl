@@ -1,5 +1,8 @@
 ---
 title: "Rok 2022"
+sidebar:
+  label: Podsumowanie roczne
+  order: -20229999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2022"

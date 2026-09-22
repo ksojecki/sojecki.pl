@@ -1,5 +1,8 @@
 ---
 title: "Rok 2025"
+sidebar:
+  label: Podsumowanie roczne
+  order: -20259999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2025"

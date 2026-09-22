@@ -5,6 +5,7 @@ Publiczna statyczna strona dokumentacyjna Starlight dla `sojecki.pl`.
 ## Treść
 
 - opublikowane raporty i pozostałe publiczne strony: `src/content/docs/`;
+- seria `raporty/zagrozenia-hybrydowe` używa drzewa `rok/miesiąc/tydzień`, z menu Starlight generowanym automatycznie z katalogów i `sidebar.order`;
 - blog i projekty: publiczne sekcje strony;
 - research, drafty i audyty: prywatne repozytorium `ksojecki/knowledge_base` — nie należą do tego repozytorium.
 

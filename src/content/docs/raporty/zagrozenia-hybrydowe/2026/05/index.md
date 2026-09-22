@@ -1,5 +1,8 @@
 ---
 title: "Miesiąc Maj"
+sidebar:
+  label: Podsumowanie miesiąca
+  order: -20260599
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-05"

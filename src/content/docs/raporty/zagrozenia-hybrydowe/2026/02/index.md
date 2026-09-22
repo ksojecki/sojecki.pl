@@ -1,5 +1,8 @@
 ---
 title: "Miesiąc Luty"
+sidebar:
+  label: Podsumowanie miesiąca
+  order: -20260299
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-02"

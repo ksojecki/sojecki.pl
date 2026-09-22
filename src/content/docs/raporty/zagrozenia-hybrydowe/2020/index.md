@@ -1,5 +1,8 @@
 ---
 title: "Rok 2020"
+sidebar:
+  label: Podsumowanie roczne
+  order: -20209999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2020"

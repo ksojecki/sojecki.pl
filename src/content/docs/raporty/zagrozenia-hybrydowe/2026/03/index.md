@@ -1,5 +1,8 @@
 ---
 title: "Miesiąc Marzec"
+sidebar:
+  label: Podsumowanie miesiąca
+  order: -20260399
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2026-03"

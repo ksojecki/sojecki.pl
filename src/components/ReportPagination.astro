@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Default from '@astrojs/starlight/components/Pagination.astro';
 import type { ReportData } from '../content.config';
+import { reportHref } from '../utils/reportHref';
 
 const isReport = (entry: CollectionEntry<'docs'>): entry is CollectionEntry<'docs'> & { data: ReportData } => entry.data.kind === 'report';
 const currentId = Astro.locals.starlightRoute.id;
@@ -11,12 +12,11 @@ const reports = current ? entries.filter((entry) => entry.data.series === curren
 const index = reports.findIndex((entry) => entry.id === currentId);
 const older = index > 0 ? reports[index - 1] : undefined;
 const newer = index >= 0 ? reports[index + 1] : undefined;
-const href = (id: string) => `/${id.toLowerCase()}/`;
 ---
 
 {current ? <nav class="pagination-links print:hidden" aria-label="Nawigacja raportów">
-  {older && <a href={href(older.id)} rel="prev"><span><strong>Starszy</strong><br /><span class="link-title">{older.data.title}</span></span></a>}
-  {newer && <a href={href(newer.id)} rel="next"><span><strong>Nowszy</strong><br /><span class="link-title">{newer.data.title}</span></span></a>}
+  {older && <a href={reportHref(older.id)} rel="prev"><span><strong>Starszy</strong><br /><span class="link-title">{older.data.title}</span></span></a>}
+  {newer && <a href={reportHref(newer.id)} rel="next"><span><strong>Nowszy</strong><br /><span class="link-title">{newer.data.title}</span></span></a>}
 </nav> : <Default />}
 
 <style>

@@ -1,5 +1,8 @@
 ---
 title: "Rok 2024"
+sidebar:
+  label: Podsumowanie roczne
+  order: -20249999
 kind: "report"
 series: "zagrozenia-hybrydowe"
 period: "2024"
