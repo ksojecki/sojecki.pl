@@ -9,8 +9,9 @@ const files = [
   'raporty/zagrozenia-hybrydowe/2025/index.html', 'raporty/zagrozenia-hybrydowe/2026/04/index.html', 'raporty/zagrozenia-hybrydowe/2026/08/index.html',
   'raporty/zagrozenia-hybrydowe/2026/09/index.html', 'raporty/zagrozenia-hybrydowe/2026/09/2026-09-w03/index.html',
   'raporty/zagrozenia-hybrydowe/tygodniowe/index.html', 'raporty/zagrozenia-hybrydowe/miesieczne/index.html', 'raporty/zagrozenia-hybrydowe/roczne/index.html',
-  'raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-W03/index.html',
-  'raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-w03/index.html', 'raporty/zagrozenia-hybrydowe/miesieczne/2026-08/index.html', 'raporty/zagrozenia-hybrydowe/roczne/2025/index.html',
+  ...['2020', '2021', '2022', '2023', '2024', '2025'].map((year) => `raporty/zagrozenia-hybrydowe/roczne/${year}/index.html`),
+  ...['01', '02', '03', '04', '05', '06', '07', '08', '09'].map((month) => `raporty/zagrozenia-hybrydowe/miesieczne/2026-${month}/index.html`),
+  ...['w01', 'w02', 'w03', 'W01', 'W02', 'W03'].map((slug) => `raporty/zagrozenia-hybrydowe/tygodniowe/2026-09-${slug}/index.html`),
 ];
 
 test('build preserves public Polish routes', async () => {
