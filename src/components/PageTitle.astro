@@ -6,5 +6,15 @@ const { entry } = Astro.locals.starlightRoute;
 const seriesId = 'zagrozenia-hybrydowe';
 ---
 
-<Default><slot /></Default>
-{entry.id === 'raporty/zagrozenia-hybrydowe' && <><p>Okresowe oceny udokumentowanych zagrożeń wobec Polski i NATO.</p><ReportDashboard seriesId={seriesId} /><p><a href="/raporty/zagrozenia-hybrydowe/metodologia/">Metodologia ocen</a></p></>}
+<Default>
+  <slot />
+</Default>
+{entry.id === 'raporty/zagrozenia-hybrydowe' && (
+  <>
+    <p>Okresowe oceny udokumentowanych zagrożeń wobec Polski i NATO.</p>
+    <ReportDashboard seriesId={seriesId} />
+    <p>
+      <a href="/raporty/zagrozenia-hybrydowe/metodologia/">Metodologia ocen</a>
+    </p>
+  </>
+)}

@@ -3,13 +3,20 @@ import path from 'node:path';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-const reportSeriesDirectory = path.join(process.cwd(), 'src/content/docs/raporty/zagrozenia-hybrydowe');
+const reportSeriesDirectory = path.join(
+  process.cwd(),
+  'src/content/docs/raporty/zagrozenia-hybrydowe',
+);
 const reportSeriesRoute = '/raporty/zagrozenia-hybrydowe';
 
 function walkMarkdownFiles(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const entryPath = path.join(directory, entry.name);
-    return entry.isDirectory() ? walkMarkdownFiles(entryPath) : entry.name.endsWith('.md') ? [entryPath] : [];
+    return entry.isDirectory()
+      ? walkMarkdownFiles(entryPath)
+      : entry.name.endsWith('.md')
+        ? [entryPath]
+        : [];
   });
 }
 
@@ -30,15 +37,26 @@ function nestedReportRedirects() {
         }
         if (/^\d{4}\/\d{2}\/index\.md$/.test(lowerCasePath)) {
           const [year, month] = relativePath.split('/');
-          return [[`${reportSeriesRoute}/miesieczne/${year}-${month}`, `${reportSeriesRoute}/${year}/${month}`]];
+          return [
+            [
+              `${reportSeriesRoute}/miesieczne/${year}-${month}`,
+              `${reportSeriesRoute}/${year}/${month}`,
+            ],
+          ];
         }
         if (/^\d{4}\/\d{2}\/\d{4}-\d{2}-w\d{2}\.md$/.test(lowerCasePath)) {
           const [year, month, filename] = relativePath.split('/');
           const slug = filename.replace(/\.md$/, '');
           const legacyUppercaseSlug = slug.replace(/-w(\d{2})$/, '-W$1');
           return [
-            [`${reportSeriesRoute}/tygodniowe/${slug}`, `${reportSeriesRoute}/${year}/${month}/${slug}`],
-            [`${reportSeriesRoute}/tygodniowe/${legacyUppercaseSlug}`, `${reportSeriesRoute}/${year}/${month}/${slug}`],
+            [
+              `${reportSeriesRoute}/tygodniowe/${slug}`,
+              `${reportSeriesRoute}/${year}/${month}/${slug}`,
+            ],
+            [
+              `${reportSeriesRoute}/tygodniowe/${legacyUppercaseSlug}`,
+              `${reportSeriesRoute}/${year}/${month}/${slug}`,
+            ],
           ];
         }
         throw new Error(`Unsupported report path for legacy redirects: ${relativePath}`);
@@ -64,13 +82,19 @@ export default defineConfig({
       description: 'Publiczna strona Kamila Sojeckiego.',
       defaultLocale: 'root',
       locales: { root: { label: 'Polski', lang: 'pl' } },
-      components: { PageTitle: './src/components/PageTitle.astro', Pagination: './src/components/ReportPagination.astro' },
+      components: {
+        PageTitle: './src/components/PageTitle.astro',
+        Pagination: './src/components/ReportPagination.astro',
+      },
       sidebar: [
         { label: 'Start', link: '/' },
         {
           label: 'Raporty',
           items: [
-            { slug: 'raporty/zagrozenia-hybrydowe', label: 'Monitoring zagrożeń hybrydowych Rosji' },
+            {
+              slug: 'raporty/zagrozenia-hybrydowe',
+              label: 'Monitoring zagrożeń hybrydowych Rosji',
+            },
             { slug: 'raporty/zagrozenia-hybrydowe/metodologia', label: 'Metodologia' },
             { autogenerate: { directory: 'raporty/zagrozenia-hybrydowe' } },
           ],

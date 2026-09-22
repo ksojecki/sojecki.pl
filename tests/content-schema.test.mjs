@@ -24,12 +24,18 @@ test('report schema requires period metadata and handles incomplete periods', as
   try {
     for (const field of ['periodStart', 'periodEnd', 'knowledgeDate', 'periodComplete']) {
       await t.test(`report without ${field} fails validation`, async () => {
-        assert.equal(await passesContentCheck(report.replace(new RegExp(`^${field}:.*\\n`, 'm'), '')), false);
+        assert.equal(
+          await passesContentCheck(report.replace(new RegExp(`^${field}:.*\\n`, 'm'), '')),
+          false,
+        );
       });
     }
 
     await t.test('incomplete report with numeric intensityChange fails validation', async () => {
-      assert.equal(await passesContentCheck(incomplete.replace('intensityChange: null', 'intensityChange: 1')), false);
+      assert.equal(
+        await passesContentCheck(incomplete.replace('intensityChange: null', 'intensityChange: 1')),
+        false,
+      );
     });
 
     await t.test('incomplete report with null intensityChange passes validation', async () => {

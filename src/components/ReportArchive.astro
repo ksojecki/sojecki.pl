@@ -2,10 +2,37 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import type { ReportData } from '../content.config';
 import { reportHref } from '../utils/reportHref';
-const { seriesId, reportType } = Astro.props as { seriesId: string; reportType: 'weekly' | 'monthly' | 'annual' };
-const isReport = (entry: CollectionEntry<'docs'>): entry is CollectionEntry<'docs'> & { data: ReportData } => entry.data.kind === 'report';
-const reports = (await getCollection('docs')).filter(isReport).filter((entry) => entry.data.series === seriesId && entry.data.reportType === reportType).sort((a, b) => b.id.localeCompare(a.id));
-const label = { stable: 'Stabilnie', tension: 'Napięcie', preparations: 'Przygotowania', attack: 'Atak' };
+const { seriesId, reportType } = Astro.props as {
+  seriesId: string;
+  reportType: 'weekly' | 'monthly' | 'annual';
+};
+const isReport = (
+  entry: CollectionEntry<'docs'>,
+): entry is CollectionEntry<'docs'> & { data: ReportData } =>
+  entry.data.kind === 'report';
+const reports = (await getCollection('docs'))
+  .filter(isReport)
+  .filter(
+    (entry) =>
+      entry.data.series === seriesId && entry.data.reportType === reportType,
+  )
+  .sort((a, b) => b.id.localeCompare(a.id));
+const label = {
+  stable: 'Stabilnie',
+  tension: 'Napięcie',
+  preparations: 'Przygotowania',
+  attack: 'Atak',
+};
 ---
 
-<p>Raporty w kolejności od najnowszego.</p><ol>{reports.map((report) => <li><a href={reportHref(report.id)}>{report.data.title}</a>{' — '}{report.data.intensity == null ? 'n/d' : `${report.data.intensity}/10`}{report.data.confrontation && ` · ${label[report.data.confrontation]}`}</li>)}</ol>
+<p>Raporty w kolejności od najnowszego.</p>
+<ol>
+  {reports.map((report) => (
+    <li>
+      <a href={reportHref(report.id)}>{report.data.title}</a>
+      {' — '}
+      {report.data.intensity == null ? 'n/d' : `${report.data.intensity}/10`}
+      {report.data.confrontation && ` · ${label[report.data.confrontation]}`}
+    </li>
+  ))}
+</ol>
